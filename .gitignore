@@ -1,4 +1,4 @@
 ./deep_fake_ui/node_modules
 ./deep_fake_backend/venv
 ./deep_fake_backend/temp
-./deep_fake_backend/__pycache__
+./deep_fake_backend/__pycache__/*
