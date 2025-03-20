@@ -28,7 +28,6 @@ function Home() {
     const resetAll = () => {
         setImage(null);
         setCroppedImage(null);
-        setResult(null);
         setActiveStep(0);
     };
 

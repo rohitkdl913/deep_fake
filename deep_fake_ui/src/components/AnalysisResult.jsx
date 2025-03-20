@@ -93,6 +93,52 @@ const AnalysisResult = ({ croppedImage, onReset, onBack }) => {
             <>
               <div className={`p-6 rounded-lg border ${result.isDeepfake ? "bg-red-50 border-red-200" : "bg-green-50 border-green-200"}`}>
                 {/* Keep existing result display */}
+
+
+                {result && (
+                  <div className="h-full flex flex-col">
+                    <div className={`p-6 rounded-lg border ${result.isDeepfake
+                      ? "bg-red-50 border-red-200"
+                      : "bg-green-50 border-green-200"
+                      }`}>
+                      <div className="flex items-center mb-4">
+                        {result.isDeepfake ? (
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        ) : (
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        )}
+                        <h3 className={`ml-3 text-xl font-semibold ${result.isDeepfake ? "text-red-800" : "text-green-800"
+                          }`}>
+                          {result.isDeepfake ? "Deepfake Detected" : "Authentic Image"}
+                        </h3>
+                      </div>
+
+                      <div className="mb-4">
+                        <p className="font-medium mb-1">Confidence Score:</p>
+                        <div className="h-4 bg-gray-200 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full ${result.isDeepfake ? "bg-red-500" : "bg-green-500"
+                              }`}
+                            style={{ width: `${result.confidence}%` }}
+                          ></div>
+                        </div>
+                        <p className="text-right text-sm mt-1">{result.confidence}%</p>
+                      </div>
+
+                      <div>
+                        <p className="font-medium mb-1">Analysis Details:</p>
+                        <p className="text-gray-700">{result.details}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+
+
               </div>
               <div className="flex gap-4 mt-auto">
                 <button
