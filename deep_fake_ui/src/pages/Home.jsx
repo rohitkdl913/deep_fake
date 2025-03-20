@@ -9,14 +9,12 @@ import Footer from '../components/Footer';
 function Home() {
     const [image, setImage] = useState(null);
     const [croppedImage, setCroppedImage] = useState(null);
-    const [isAnalyzing, setIsAnalyzing] = useState(false);
-    const [result, setResult] = useState(null);
+    
     const [activeStep, setActiveStep] = useState(0);
 
     const handleImageUpload = (file) => {
         setImage(URL.createObjectURL(file));
         setCroppedImage(null);
-        setResult(null);
         setActiveStep(1);
     };
 
@@ -25,15 +23,7 @@ function Home() {
         setActiveStep(2);
     };
 
-    const handleAnalyze = async (isLoading = true, resultData = null) => {
-        if (isLoading) {
-            setIsAnalyzing(true);
-            setResult(null);
-        } else {
-            setIsAnalyzing(false);
-            setResult(resultData);
-        }
-    };
+   
 
     const resetAll = () => {
         setImage(null);
@@ -68,10 +58,8 @@ function Home() {
                         {activeStep === 2 && croppedImage && (
                             <AnalysisResult
                                 croppedImage={croppedImage}
-                                isAnalyzing={isAnalyzing}
-                                result={result}
-                                onAnalyze={handleAnalyze}
                                 onReset={resetAll}
+                                onBack={()=>setActiveStep(1)}
                             />
                         )}
                     </div>
